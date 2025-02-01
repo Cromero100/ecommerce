@@ -1,0 +1,99 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+/* User Profile Container */
+.user-profile {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Header Section */
+.user-header {
+  text-align: center;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  padding: 20px 10px;
+  border-radius: 12px 12px 0 0;
+}
+
+.user-header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.user-header p {
+  margin: 5px 0 0;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+/* User Card */
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.user-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #6a11cb;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+  flex-grow: 1;
+}
+
+.user-info h2 {
+  margin: 0;
+  font-size: 22px;
+  color: #333;
+}
+
+.user-email {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #666;
+}
+
+.user-nickname,
+.user-updated {
+  font-size: 14px;
+  color: #999;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .user-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .user-avatar {
+    margin-bottom: 15px;
+  }
+
+  .user-info h2 {
+    font-size: 20px;
+  }
+
+  .user-email,
+  .user-nickname,
+  .user-updated {
+    font-size: 14px;
+  }
+}
