@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getOnlyProduct } from "../services/api";
-import "./ProductDetail.css";
+import "./productDetail.css";
 
 export const ProductDetail = () => {
   const { id } = useParams();
