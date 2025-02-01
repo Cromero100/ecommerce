@@ -1,6 +1,6 @@
 import React from "react";
 import { ProductList } from "./ProductList";
-import "./Home.css";
+import "./home.css";
 import { Link } from "react-router";
 
 export const Home = () => {
