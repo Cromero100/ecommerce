@@ -60,6 +60,7 @@ export const Cart = () => {
         selectedItems={selectedItems}
         totalAmount={totalAmount}
         totalItems={totalItems}
+        cart={cart}
       />
     </div>
   );

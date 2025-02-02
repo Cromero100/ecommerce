@@ -1,4 +1,6 @@
 import React from "react";
+import { useSpring, animated, config } from "react-spring";
+import { useInView } from "react-intersection-observer";
 import { ProductList } from "./ProductList";
 import "./home.css";
 import { Link } from "react-router";
@@ -11,59 +13,141 @@ export const Home = () => {
     { id: 4, name: "Deportes", image: "url-to-image" },
   ];
 
+  // Hero section animation
+  const heroAnimation = useSpring({
+    from: { opacity: 0, transform: "translateY(50px)" },
+    to: { opacity: 1, transform: "translateY(0)" },
+    config: config.molasses,
+    delay: 300,
+  });
+
+  // Categories section animations
+  const [categoriesRef, categoriesInView] = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
+
+  const categoriesAnimation = useSpring({
+    opacity: categoriesInView ? 1 : 0,
+    transform: categoriesInView ? "translateY(0)" : "translateY(50px)",
+    config: config.gentle,
+  });
+
+  // Promo section animations
+  const [promoRef, promoInView] = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
+
+  const promoAnimation = useSpring({
+    opacity: promoInView ? 1 : 0,
+    transform: promoInView ? "scale(1)" : "scale(0.8)",
+    config: config.wobbly,
+  });
+
+  // Newsletter section animations
+  const [newsletterRef, newsletterInView] = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
+
+  const newsletterAnimation = useSpring({
+    opacity: newsletterInView ? 1 : 0,
+    transform: newsletterInView ? "translateY(0)" : "translateY(50px)",
+    config: config.gentle,
+  });
+
   return (
     <>
       {/* Hero Section */}
-      <section className="hero-section">
+      <animated.section className="hero-section" style={heroAnimation}>
         <div className="hero-content">
           <h1 className="hero-title">Descubre tu estilo único</h1>
           <p className="hero-subtitle">
             Encuentra las últimas tendencias en moda y accesorios
           </p>
-          <Link to={"/productos"} className="hero-button">
+          <Link to={"/productos"} className="hero-button hover-effect">
             Explorar Colección
           </Link>
         </div>
-      </section>
+      </animated.section>
 
       {/* Categories Section */}
-      <section className="categories-section">
+      <animated.section
+        ref={categoriesRef}
+        className="categories-section"
+        style={categoriesAnimation}
+      >
         <h2 className="section-title">Categorías Destacadas</h2>
         <div className="categories-grid">
-          {categories.map((category) => (
-            <div key={category.id} className="category-card">
-              <img src={category.image} alt={category.name} />
+          {categories.map((category, index) => (
+            <animated.div
+              key={category.id}
+              className="category-card"
+              style={useSpring({
+                from: { opacity: 0, transform: "scale(0.8)" },
+                to: { opacity: 1, transform: "scale(1)" },
+                delay: index * 200,
+              })}
+            >
+              <img
+                src={category.image}
+                alt={category.name}
+                className="scale-effect"
+              />
               <div className="category-overlay">{category.name}</div>
-            </div>
+            </animated.div>
           ))}
         </div>
-      </section>
+      </animated.section>
 
       {/* Promotional Banner */}
-      <section className="promotional-banner">
+      <animated.section
+        ref={promoRef}
+        className="promotional-banner"
+        style={promoAnimation}
+      >
         <div className="promo-content">
-          <div className="promo-item">
-            <div className="promo-icon">🚚</div>
-            <h3 className="promo-title">Envío Gratis</h3>
-            <p className="promo-description">En pedidos superiores a $50</p>
-          </div>
-          <div className="promo-item">
-            <div className="promo-icon">↩️</div>
-            <h3 className="promo-title">Devolución Gratuita</h3>
-            <p className="promo-description">
-              30 días para cambios o devoluciones
-            </p>
-          </div>
-          <div className="promo-item">
-            <div className="promo-icon">🔒</div>
-            <h3 className="promo-title">Pago Seguro</h3>
-            <p className="promo-description">100% protección de compra</p>
-          </div>
+          {[
+            {
+              icon: "🚚",
+              title: "Envío Gratis",
+              desc: "En pedidos superiores a $50",
+            },
+            {
+              icon: "↩️",
+              title: "Devolución Gratuita",
+              desc: "30 días para cambios o devoluciones",
+            },
+            {
+              icon: "🔒",
+              title: "Pago Seguro",
+              desc: "100% protección de compra",
+            },
+          ].map((item, index) => (
+            <animated.div
+              key={index}
+              className="promo-item"
+              style={useSpring({
+                from: { opacity: 0, transform: "translateY(30px)" },
+                to: { opacity: 1, transform: "translateY(0)" },
+                delay: index * 200,
+              })}
+            >
+              <div className="promo-icon">{item.icon}</div>
+              <h3 className="promo-title">{item.title}</h3>
+              <p className="promo-description">{item.desc}</p>
+            </animated.div>
+          ))}
         </div>
-      </section>
+      </animated.section>
 
       {/* Newsletter Section */}
-      <section className="newsletter-section">
+      <animated.section
+        ref={newsletterRef}
+        className="newsletter-section"
+        style={newsletterAnimation}
+      >
         <div className="newsletter-content">
           <h2 className="section-title">Suscríbete a nuestro newsletter</h2>
           <p>Recibe las últimas novedades y ofertas exclusivas</p>
@@ -73,12 +157,14 @@ export const Home = () => {
               placeholder="Tu correo electrónico"
               className="newsletter-input"
             />
-            <button type="submit" className="newsletter-button">
+            <button type="submit" className="newsletter-button hover-effect">
               Suscribirse
             </button>
           </form>
         </div>
-      </section>
+      </animated.section>
     </>
   );
 };
+
+export default Home;

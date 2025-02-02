@@ -1,6 +1,14 @@
 import React from "react";
 import "./orderSummary.css";
-export const OrderSummary = ({ selectedItems, totalAmount, totalItems }) => {
+import handlePayment from "../../services/EpaycoCheckout";
+export const OrderSummary = ({
+  selectedItems,
+  totalAmount,
+  totalItems,
+  cart,
+}) => {
+  const selectedProducts = cart.filter((item) => selectedItems.has(item.id));
+
   return (
     <div className="order-summary">
       <h2>Resumen de la orden</h2>
@@ -15,7 +23,7 @@ export const OrderSummary = ({ selectedItems, totalAmount, totalItems }) => {
       <button
         className="checkout-btn"
         disabled={totalItems === 0}
-        onClick={() => alert("Procediendo al checkout...")}
+        onClick={() => handlePayment(selectedProducts)}
       >
         Continuar con la compra
       </button>

@@ -193,3 +193,63 @@
     flex-direction: column;
   }
 }
+/* Existing styles remain the same, adding new animation classes */
+
+/* Hover effect for buttons */
+.hover-effect {
+  transition: transform 0.3s ease-in-out;
+}
+
+.hover-effect:hover {
+  transform: translateY(-3px);
+}
+
+/* Scale effect for images */
+.scale-effect {
+  transition: transform 0.5s ease-in-out;
+}
+
+.scale-effect:hover {
+  transform: scale(1.1);
+}
+
+/* Smooth transitions for all elements */
+.hero-section,
+.categories-section,
+.promotional-banner,
+.newsletter-section {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Category card hover effects */
+.category-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.category-overlay {
+  transition: background-color 0.3s ease-in-out;
+}
+
+.category-card:hover .category-overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* Promo item hover effect */
+.promo-item {
+  transition: transform 0.3s ease-in-out;
+}
+
+.promo-item:hover {
+  transform: translateY(-5px);
+}
+
+/* Newsletter input focus effect */
+.newsletter-input {
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.newsletter-input:focus {
+  box-shadow: 0 0 0 2px #3498db;
+  outline: none;
+}
