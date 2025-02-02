@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Search, SlidersHorizontal, ChevronDown } from "lucide-react";
 import getProducts from "../services/api";
 import { ProductCard } from "../components/common/ProductCard";
-import "./ProductList.css";
+import "./productList.css";
 
 export const ProductList = () => {
   const [products, setProducts] = useState([]);
